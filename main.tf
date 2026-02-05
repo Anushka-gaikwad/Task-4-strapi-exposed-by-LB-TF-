@@ -14,7 +14,7 @@ module "sg" {
 module "ec2" {
   source            = "./module/ec2"
   subnet_id         = module.vpc.private_subnet_id
-  security_group_id = module.security.ec2_sg_id
+  security_group_id = module.sg.ec2_sg_id
   instance_type     = var.instance_type
   key_name          = var.key_name
 }
