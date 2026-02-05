@@ -23,6 +23,6 @@ module "alb" {
   source            = "./module/alb"
   vpc_id            = module.vpc.vpc_id
   public_subnet_id  = module.vpc.public_subnet_id
-  alb_sg_id         = module.security.alb_sg_id
+  alb_sg_id         = module.sg.alb_sg_id
   instance_id       = module.ec2.instance_id
 }
