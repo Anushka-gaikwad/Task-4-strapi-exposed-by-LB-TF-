@@ -1,5 +1,5 @@
 module "vpc" {
-  source                = "./modules/vpc"
+  source                = "./module/vpc"
   env                   = var.env
   vpc_cidr              = var.vpc_cidr
   public_subnet_cidr    = var.public_subnet_cidr
@@ -7,12 +7,12 @@ module "vpc" {
 }
 
 module "security" {
-  source = "./modules/security"
+  source = "./module/security"
   vpc_id = module.vpc.vpc_id
 }
 
 module "ec2" {
-  source            = "./modules/ec2"
+  source            = "./module/ec2"
   subnet_id         = module.vpc.private_subnet_id
   security_group_id = module.security.ec2_sg_id
   instance_type     = var.instance_type
@@ -20,7 +20,7 @@ module "ec2" {
 }
 
 module "alb" {
-  source            = "./modules/alb"
+  source            = "./module/alb"
   vpc_id            = module.vpc.vpc_id
   public_subnet_id  = module.vpc.public_subnet_id
   alb_sg_id         = module.security.alb_sg_id
